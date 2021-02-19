@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody _rb;
+    private const int Force = 30;
+    private Block _block;
     private Camera _camera;
     private Player _player;
-    private Block _block;
-    private const int Force = 30;
+    private Rigidbody _rb;
 
     public Action<Player> OnlaunchPlayer;
-    
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -24,14 +24,11 @@ public class Player : MonoBehaviour
         var mousePos = Input.mousePosition;
         mousePos.z = 2.6f; //distance from block zero pos to right border;
         transform.position = new Vector3(
-            _camera.ScreenToWorldPoint(mousePos).x, 
+            _camera.ScreenToWorldPoint(mousePos).x,
             transform.position.y,
             transform.position.z);
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            _rb.velocity = Vector3.forward * Force;
-        }
+        if (Input.GetMouseButtonUp(0)) _rb.velocity = Vector3.forward * Force;
     }
 
     private void OnTriggerExit(Collider other)

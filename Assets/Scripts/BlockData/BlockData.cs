@@ -6,7 +6,11 @@ using UnityEngine;
 public class BlockData : ScriptableObject
 {
     [SerializeField] private List<BlockStruct> dataStruct;
-    public List<BlockStruct> GetData() => dataStruct;
+
+    public List<BlockStruct> GetData()
+    {
+        return dataStruct;
+    }
 }
 
 [Serializable]

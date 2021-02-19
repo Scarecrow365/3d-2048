@@ -56,7 +56,7 @@ public class SpawnController : MonoBehaviour
     public void RemoveDisabledBlockFromList(Block block)
     {
         Block element = new Block();
-        
+
         foreach (var obj in _allObjectsInGame)
         {
             if (obj == block.gameObject)
@@ -64,7 +64,7 @@ public class SpawnController : MonoBehaviour
                 element = block;
             }
         }
-        
+
         _allObjectsInGame.Remove(element.gameObject);
         AllBlocksInGame.Remove(element);
     }

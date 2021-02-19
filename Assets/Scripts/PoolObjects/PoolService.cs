@@ -3,19 +3,18 @@ using UnityEngine;
 
 public class PoolService : MonoBehaviour
 {
-    private ObjectPooler _pool;
-    
     private const int CubesInRow = 5;
-    
-    private float _offset;
     private readonly Vector3 _startPos = new Vector3(-2.40f, 0f, 6.80f); //left corner
+
+    private float _offset;
+    private ObjectPooler _pool;
 
     public void Init(PoolConfig poolConfig, Transform parent, float offset)
     {
         _pool = new ObjectPooler();
         _pool.Init();
         _offset = offset;
-        
+
         InitDataPool(poolConfig, parent);
     }
 
@@ -32,8 +31,8 @@ public class PoolService : MonoBehaviour
         for (var i = 0; i < CubesInRow; i++)
         {
             var block = _pool.SpawnFromPool();
-            block.transform.position = i == 0 ? 
-                _startPos : new Vector3(currentPos.x + _offset, currentPos.y, currentPos.z);
+            block.transform.position =
+                i == 0 ? _startPos : new Vector3(currentPos.x + _offset, currentPos.y, currentPos.z);
             currentPos = block.transform.position;
             objectsList.Add(block);
         }

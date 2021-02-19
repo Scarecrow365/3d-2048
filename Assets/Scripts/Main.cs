@@ -60,7 +60,7 @@ public class Main : MonoBehaviour
             _countMergeCubes = 0;
             SubscribeBlock(newBlock);
         }
-        
+
         UnsubscribeBlock(block);
         spawnController.RemoveDisabledBlockFromList(block);
     }
