@@ -5,8 +5,8 @@ public class SpawnService : MonoBehaviour
 {
     [SerializeField] private Transform blockParent;
     [SerializeField] private PoolConfig poolConfig;
-
-    private const int CountLinesOnStart = 4;
+    [SerializeField] private int countLinesOnStart = 5;
+    
     private const float Offset = 1.20f; //cube size (1f) + offset 0.2f
 
     private PoolService _spawner;
@@ -25,7 +25,7 @@ public class SpawnService : MonoBehaviour
     public List<GameObject> CreateStartCubes()
     {
         var list = new List<GameObject>();
-        for (var i = 0; i < CountLinesOnStart; i++)
+        for (var i = 0; i < countLinesOnStart; i++)
         {
             list.AddRange(CreateNewLine(list));
         }
@@ -43,6 +43,7 @@ public class SpawnService : MonoBehaviour
                 position.y,
                 position.z - Offset);
             obj.transform.position = position;
+            obj.transform.rotation = Quaternion.Euler(0f,0f,0f);
         }
 
         return _spawner.CreateAndGetNewLine();

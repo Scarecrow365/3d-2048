@@ -8,6 +8,7 @@ public class Block : MonoBehaviour
     private MaterialPropertyBlock _propertyBlock;
     private Rigidbody _rb;
     private const float Force = 5;
+
     public int GetBlockScore { get; private set; }
 
     public event Action<Block> OnTouchSameScoreBlock;
@@ -26,7 +27,8 @@ public class Block : MonoBehaviour
         _propertyBlock.SetTexture("_MainTex", texture);
         _renderer.SetPropertyBlock(_propertyBlock);
         GetBlockScore = score;
-        if (GetBlockScore == 2048)
+
+        if (GetBlockScore >= 2048)
         {
             OnWinGame?.Invoke("win");
         }
@@ -34,20 +36,20 @@ public class Block : MonoBehaviour
 
     public void AddImpulse()
     {
-        _rb.AddForce(Vector3.up * Force, ForceMode.Impulse);
+        var vector = new Vector3(Random.Range(0, 1f), 1f, Random.Range(0, 1f));
+        _rb.AddForce(vector * Force, ForceMode.Impulse);
         _rb.rotation = Random.rotation;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (GetComponent<Rigidbody>().velocity == Vector3.zero)
-            return;
         if (other.collider.CompareTag("Block"))
         {
             var enemyBlock = other.gameObject.GetComponent<Block>();
             if (enemyBlock.GetBlockScore == GetBlockScore)
             {
                 OnTouchSameScoreBlock?.Invoke(this);
+                _rb.velocity = Vector3.zero;
                 gameObject.SetActive(false);
             }
         }

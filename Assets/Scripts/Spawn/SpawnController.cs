@@ -23,7 +23,11 @@ public class SpawnController : MonoBehaviour
 
     public void CreateNewLine()
     {
-        spawnService.CreateNewLine(_allObjectsInGame);
+        var list = spawnService.CreateNewLine(_allObjectsInGame);
+        foreach (var element in list)
+        {
+            SetDataForBlock(element.GetComponent<Block>());
+        }
     }
 
     public Block RequestOnChildren(Block parent)

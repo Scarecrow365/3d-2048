@@ -13,6 +13,7 @@ public class Main : MonoBehaviour
     {
         SetUpLevel();
         SubscribeRedLines();
+        StartCoroutine(AddNewBlocksLine());
     }
 
     private void SetUpLevel()
@@ -74,7 +75,6 @@ public class Main : MonoBehaviour
 
     private void RestartScene(string info)
     {
-        print(info);
         SceneManager.LoadScene(0);
     }
 
@@ -92,5 +92,6 @@ public class Main : MonoBehaviour
         yield return new WaitForSeconds(1f);
         spawnController.CreateNewPlayer();
         spawnController.GetCurrentPlayer.OnlaunchPlayer += RequestOnNewPlayer;
+        SubscribeBlock(spawnController.GetCurrentPlayer.GetComponent<Block>());
     }
 }

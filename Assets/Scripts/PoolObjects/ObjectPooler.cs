@@ -19,6 +19,8 @@ public class ObjectPooler
     {
         var objectToSpawn = _poolQueue.Dequeue();
         objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = Vector3.zero;
+        objectToSpawn.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         _poolQueue.Enqueue(objectToSpawn);
         return objectToSpawn;
     }

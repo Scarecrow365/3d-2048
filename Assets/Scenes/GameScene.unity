@@ -578,7 +578,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970525640}
-  - component: {fileID: 970525639}
   - component: {fileID: 970525641}
   m_Layer: 0
   m_Name: Spawner
@@ -587,20 +586,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &970525639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970525638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8daa07e8b0c373469448a7d8cb88f25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockParent: {fileID: 1022001940}
-  poolConfig: {fileID: 11400000, guid: 984bedec7d0f5834cbd73cd6948ffc8e, type: 2}
 --- !u!4 &970525640
 Transform:
   m_ObjectHideFlags: 0
@@ -629,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockParent: {fileID: 1022001940}
   poolConfig: {fileID: 11400000, guid: 984bedec7d0f5834cbd73cd6948ffc8e, type: 2}
+  countLinesOnStart: 5
 --- !u!1 &989288331
 GameObject:
   m_ObjectHideFlags: 0
