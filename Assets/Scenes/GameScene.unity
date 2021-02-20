@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 208026475}
   - component: {fileID: 208026477}
-  - component: {fileID: 208026476}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -158,20 +157,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &208026476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208026474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cdd4c3152319a644b6e9d789eab1029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnService: {fileID: 970525641}
-  blockData: {fileID: 11400000, guid: a1ffba215c5025f4eb7909108dda215b, type: 2}
 --- !u!114 &208026477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c10bd0dd252b843a3406623431fd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnController: {fileID: 208026476}
+  spawnController: {fileID: 970525639}
   redLines:
   - {fileID: 476827557}
   - {fileID: 1201786501}
@@ -578,7 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970525640}
-  - component: {fileID: 970525641}
+  - component: {fileID: 970525639}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -586,6 +571,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &970525639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970525638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdd4c3152319a644b6e9d789eab1029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockData: {fileID: 11400000, guid: a1ffba215c5025f4eb7909108dda215b, type: 2}
+  blockParent: {fileID: 1022001940}
+  poolConfig: {fileID: 11400000, guid: 984bedec7d0f5834cbd73cd6948ffc8e, type: 2}
+  countLinesOnStart: 5
 --- !u!4 &970525640
 Transform:
   m_ObjectHideFlags: 0
@@ -600,21 +601,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &970525641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970525638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84bd5e7846ebbb24e9453405be372121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockParent: {fileID: 1022001940}
-  poolConfig: {fileID: 11400000, guid: 984bedec7d0f5834cbd73cd6948ffc8e, type: 2}
-  countLinesOnStart: 5
 --- !u!1 &989288331
 GameObject:
   m_ObjectHideFlags: 0

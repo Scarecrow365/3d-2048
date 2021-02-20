@@ -3,37 +3,47 @@ using UnityEngine;
 
 public class SpawnService : MonoBehaviour
 {
-    [SerializeField] private Transform blockParent;
-    [SerializeField] private PoolConfig poolConfig;
-    [SerializeField] private int countLinesOnStart = 5;
-    
+    private const int CubesInRow = 5;
     private const float Offset = 1.20f; //cube size (1f) + offset 0.2f
+    private readonly Vector3 _startPos = new Vector3(-2.40f, 0f, 6.80f); //left corner
 
-    private PoolService _spawner;
+    private ObjectPooler _pool;
 
-    private void Awake()
+    public void Init(PoolConfig poolConfig,Transform blockParent)
     {
-        _spawner = gameObject.AddComponent<PoolService>();
-        _spawner.Init(poolConfig, blockParent, Offset);
+        _pool = gameObject.AddComponent<ObjectPooler>();
+        _pool.Init(poolConfig, blockParent);
     }
 
     public GameObject CreateGameObject()
     {
-        return _spawner.GetGameObject();
-    }
-
-    public List<GameObject> CreateStartCubes()
-    {
-        var list = new List<GameObject>();
-        for (var i = 0; i < countLinesOnStart; i++)
-        {
-            list.AddRange(CreateNewLine(list));
-        }
-
-        return list;
+        return _pool.SpawnFromPool();
     }
 
     public List<GameObject> CreateNewLine(List<GameObject> allCubes)
+    {
+        MoveAllCubesForNewLine(allCubes);
+        return CreateAndGetNewLine();
+    }
+    
+    private List<GameObject> CreateAndGetNewLine()
+    {
+        var objectsList = new List<GameObject>();
+        var currentPos = _startPos;
+
+        for (var i = 0; i < CubesInRow; i++)
+        {
+            var block = CreateGameObject();
+            block.transform.position =
+                i == 0 ? _startPos : new Vector3(currentPos.x + Offset, currentPos.y, currentPos.z);
+            currentPos = block.transform.position;
+            objectsList.Add(block);
+        }
+
+        return objectsList;
+    }
+
+    private void MoveAllCubesForNewLine(List<GameObject> allCubes)
     {
         foreach (var obj in allCubes)
         {
@@ -43,9 +53,6 @@ public class SpawnService : MonoBehaviour
                 position.y,
                 position.z - Offset);
             obj.transform.position = position;
-            obj.transform.rotation = Quaternion.Euler(0f,0f,0f);
         }
-
-        return _spawner.CreateAndGetNewLine();
     }
 }

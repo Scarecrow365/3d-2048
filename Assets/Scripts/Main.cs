@@ -18,16 +18,18 @@ public class Main : MonoBehaviour
 
     private void SetUpLevel()
     {
-        spawnController.SetUpLevel();
-        spawnController.GetCurrentPlayer.OnlaunchPlayer += RequestOnNewPlayer;
+        spawnController.CreateLevel();
+        var player = spawnController.GetCurrentPlayer;
+        player.OnlaunchPlayer += RequestOnNewPlayer;
+        SubscribeBlock(player.gameObject.GetComponent<Block>());
         SubscribeBlocks();
     }
 
     private void SubscribeBlocks()
     {
-        foreach (var block in spawnController.AllBlocksInGame)
+        foreach (var block in spawnController.AllBlocksInGame())
         {
-            SubscribeBlock(block);
+            SubscribeBlock(block.GetComponent<Block>());
         }
     }
 
@@ -55,20 +57,20 @@ public class Main : MonoBehaviour
     {
         _countMergeCubes++;
 
+        UnsubscribeBlock(block);
+        spawnController.RemoveDisabledBlockFromList(block);
+
         if (_countMergeCubes > 1)
         {
             var newBlock = spawnController.RequestOnChildren(block);
             _countMergeCubes = 0;
             SubscribeBlock(newBlock);
         }
-
-        UnsubscribeBlock(block);
-        spawnController.RemoveDisabledBlockFromList(block);
     }
 
     private void RequestOnNewPlayer(Player obj)
     {
-        spawnController.GetCurrentPlayer.OnlaunchPlayer -= RequestOnNewPlayer;
+        obj.OnlaunchPlayer -= RequestOnNewPlayer;
         spawnController.AddObjectToBlocksList(obj.gameObject);
         StartCoroutine(DelayCreateNewPlayer());
     }
@@ -83,7 +85,12 @@ public class Main : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(10f);
-            spawnController.CreateNewLine();
+            var newLine = spawnController.CreateNewLine();
+
+            foreach (var block in newLine)
+            {
+                SubscribeBlock(block.GetComponent<Block>());
+            }
         }
     }
 
@@ -91,7 +98,8 @@ public class Main : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         spawnController.CreateNewPlayer();
-        spawnController.GetCurrentPlayer.OnlaunchPlayer += RequestOnNewPlayer;
-        SubscribeBlock(spawnController.GetCurrentPlayer.GetComponent<Block>());
+        var player = spawnController.GetCurrentPlayer;
+        player.OnlaunchPlayer += RequestOnNewPlayer;
+        SubscribeBlock(player.GetComponent<Block>());
     }
 }

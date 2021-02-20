@@ -1,18 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler
+public class ObjectPooler : MonoBehaviour
 {
     private Queue<GameObject> _poolQueue;
 
-    public void Init()
+    public void Init(PoolConfig poolConfig, Transform parent)
     {
         _poolQueue = new Queue<GameObject>();
+        InitDataPool(poolConfig, parent);
     }
 
-    public void SetDataForWork(Queue<GameObject> queue)
+    private void SetDataForWork(Queue<GameObject> queue)
     {
         _poolQueue = queue;
+    }
+
+    private void InitDataPool(PoolConfig poolConfig, Transform parent)
+    {
+        var objects = new Queue<GameObject>();
+
+        foreach (var pool in poolConfig.GetCurrentPool())
+        {
+            for (var i = 0; i < pool.size; i++)
+            {
+                var obj = Instantiate(pool.prefab, parent);
+                obj.SetActive(false);
+                objects.Enqueue(obj);
+            }
+
+            SetDataForWork(objects);
+        }
     }
 
     public GameObject SpawnFromPool()
