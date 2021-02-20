@@ -73,12 +73,11 @@ public class SpawnController : MonoBehaviour
         }
     }
 
-
     public void CreateNewPlayer()
     {
         var obj = _spawnService.CreateGameObject();
         obj.transform.position = _playerStartPos;
-
+        obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         obj.tag = "Player";
         obj.layer = LayerMask.NameToLayer("Player");
         var player = obj.GetComponent<Player>();
@@ -88,7 +87,7 @@ public class SpawnController : MonoBehaviour
         SetDataForBlock(obj.GetComponent<Block>());
     }
 
-    public void AddObjectToBlocksList(GameObject obj)
+    public void AddObjectToObjectsList(GameObject obj)
     {
         _allObjectsInGame.Add(obj);
     }

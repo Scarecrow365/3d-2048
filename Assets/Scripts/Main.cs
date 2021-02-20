@@ -13,7 +13,7 @@ public class Main : MonoBehaviour
     {
         SetUpLevel();
         SubscribeRedLines();
-        StartCoroutine(AddNewBlocksLine());
+        //StartCoroutine(AddNewBlocksLine());
     }
 
     private void SetUpLevel()
@@ -71,7 +71,7 @@ public class Main : MonoBehaviour
     private void RequestOnNewPlayer(Player obj)
     {
         obj.OnlaunchPlayer -= RequestOnNewPlayer;
-        spawnController.AddObjectToBlocksList(obj.gameObject);
+        spawnController.AddObjectToObjectsList(obj.gameObject);
         StartCoroutine(DelayCreateNewPlayer());
     }
 

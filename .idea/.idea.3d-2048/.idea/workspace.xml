@@ -18,7 +18,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62FFEEB7-EC02-4BEA-B61E-5FBF8D44AC5B/be/78ad4475/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/394C8FAE-4BA1-4DD2-A259-BD441D5BEF25/9d/125c34a4/Queue`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9577AC7A-62EF-4317-9789-031239BA8798/2a/0d72e35c/List`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Test.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -32,10 +31,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/TestPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spawn/New/TestController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spawn/New/TestService.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PoolObjects/ObjectPooler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PoolObjects/PoolService.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spawn/SpawnService.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Spawn/SpawnController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PoolObjects/ObjectPooler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Main.cs" />
       </list>
     </option>
@@ -82,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613741445597</updated>
       <workItem from="1613741454292" duration="7984000" />
-      <workItem from="1613816297849" duration="17622000" />
+      <workItem from="1613816297849" duration="21355000" />
     </task>
     <servers />
   </component>

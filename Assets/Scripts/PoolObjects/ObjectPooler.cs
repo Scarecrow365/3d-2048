@@ -11,6 +11,21 @@ public class ObjectPooler : MonoBehaviour
         InitDataPool(poolConfig, parent);
     }
 
+    public GameObject SpawnFromPool()
+    {
+        var objectToSpawn = _poolQueue.Dequeue();
+        
+        while (objectToSpawn.activeSelf)
+        {
+            _poolQueue.Enqueue(objectToSpawn);
+            objectToSpawn = _poolQueue.Dequeue();
+        }
+
+        objectToSpawn.SetActive(true);
+        _poolQueue.Enqueue(objectToSpawn);
+        return objectToSpawn;
+    }
+
     private void SetDataForWork(Queue<GameObject> queue)
     {
         _poolQueue = queue;
@@ -31,15 +46,5 @@ public class ObjectPooler : MonoBehaviour
 
             SetDataForWork(objects);
         }
-    }
-
-    public GameObject SpawnFromPool()
-    {
-        var objectToSpawn = _poolQueue.Dequeue();
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = Vector3.zero;
-        objectToSpawn.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        _poolQueue.Enqueue(objectToSpawn);
-        return objectToSpawn;
     }
 }
