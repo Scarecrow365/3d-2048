@@ -87,7 +87,7 @@ public class SpawnController : MonoBehaviour
         SetDataForBlock(obj.GetComponent<Block>());
     }
 
-    public void AddObjectToObjectsList(GameObject obj)
+    public void AddObjectToObjectsOnFieldList(GameObject obj)
     {
         _allObjectsInGame.Add(obj);
     }

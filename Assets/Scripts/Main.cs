@@ -8,6 +8,7 @@ public class Main : MonoBehaviour
     [SerializeField] private RedLine[] redLines;
 
     private int _countMergeCubes;
+    private int _countPlayersLaunch;
 
     private void Start()
     {
@@ -68,15 +69,18 @@ public class Main : MonoBehaviour
         }
     }
 
-    private void RequestOnNewPlayer(Player obj)
+    private void RequestOnNewPlayer(Player parent)
     {
-        obj.OnlaunchPlayer -= RequestOnNewPlayer;
-        spawnController.AddObjectToObjectsList(obj.gameObject);
+        _countPlayersLaunch++;
+        
+        parent.OnlaunchPlayer -= RequestOnNewPlayer;
+        spawnController.AddObjectToObjectsOnFieldList(parent.gameObject);
         StartCoroutine(DelayCreateNewPlayer());
     }
 
     private void RestartScene(string info)
     {
+        Debug.Log($"How much player launch cubes: {_countPlayersLaunch}");
         SceneManager.LoadScene(0);
     }
 

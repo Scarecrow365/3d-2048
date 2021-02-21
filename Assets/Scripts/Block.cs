@@ -36,7 +36,7 @@ public class Block : MonoBehaviour
 
     public void AddImpulse()
     {
-        var vector = new Vector3(Random.Range(0, 1f), 1f, Random.Range(0, 1f));
+        var vector = new Vector3(Random.Range(-0.5f, 0.5f), 1f, Random.Range(0, 1f));
         _rb.AddForce(vector * Force, ForceMode.Impulse);
         _rb.rotation = Random.rotation;
     }
