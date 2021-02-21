@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     private Camera _camera;
     private Player _player;
     private Rigidbody _rb;
-    private Vector3 _mousePos;
 
     public Action<Player> OnlaunchPlayer;
 
@@ -24,14 +23,14 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            _mousePos = Input.mousePosition;
-            _mousePos.z = 2.6f; //distance from block zero pos to right border;
-            transform.position = new Vector3(
-                _camera.ScreenToWorldPoint(_mousePos).x,
-                transform.position.y,
-                transform.position.z);
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out var hit, 15f))
+            {
+                transform.position = new Vector3(hit.point.x, 0f, transform.position.z);
+            }
         }
-        
+
         if (Input.GetMouseButtonUp(0))
         {
             _rb.velocity = Vector3.forward * Force;
